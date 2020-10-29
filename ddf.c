@@ -14,18 +14,21 @@ static int init_global_systems(){
 	signal(SIGKILL, handle_signal);
 
 	if(input_global_init() != DDF_OK){
+		fprintf(stderr, "Couldn't initialize input system!\n");
 		return 1;
 	}
 
-	// init keystroke
+	if(keystroke_global_init() != DDF_OK){
+		fprintf(stderr, "Couldn't initialize keystroke system!\n");
+		return 1;
+	}
 
-	// return error, if any
 	return 0;
 }
 
 static void free_global_systems(){
 	input_global_free();
-	// free keystroke
+	keystroke_global_free();
 }
 
 static int loop(){

@@ -6,5 +6,6 @@
 
 #define DDF_ERR_CANNOT_OPEN_DEVICE 'a'
 #define DDF_ERR_CANNOT_INIT_LIBEVDEV 'b'
+#define DDF_ERR_NO_WINDOW_FOUND 'c'
 
 #endif /* DDF_ERROR_H */
