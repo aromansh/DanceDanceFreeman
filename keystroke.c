@@ -59,7 +59,7 @@ void map_buttons_to_actions(){
 	actions[MOD_NONE][DP_LEFT] = TURN_LEFT;
 	actions[MOD_NONE][DP_RIGHT] = TURN_RIGHT;
 	actions[MOD_NONE][DP_CIRCLE] = SHOOT_PRIMARY;
-	actions[MOD_NONE][DP_SQUARE] = RELOAD;
+	actions[MOD_NONE][DP_SQUARE] = USE;
 	actions[MOD_NONE][DP_X] = JUMP;
 	actions[MOD_NONE][DP_TRIANGLE] = CROUCH;
 
@@ -68,7 +68,7 @@ void map_buttons_to_actions(){
 	actions[MOD_SELECT][DP_LEFT] = CENTER_VIEW;
 	actions[MOD_SELECT][DP_RIGHT] = SHOOT_SECONDARY;
 	actions[MOD_SELECT][DP_CIRCLE] = SHOOT_PRIMARY;
-	actions[MOD_SELECT][DP_SQUARE] = USE;
+	actions[MOD_SELECT][DP_SQUARE] = RELOAD;
 	actions[MOD_SELECT][DP_X] = FLASHLIGHT;
 	actions[MOD_SELECT][DP_TRIANGLE] = NOTHING;
 
