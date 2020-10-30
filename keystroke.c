@@ -23,7 +23,7 @@
 #define NUM_DP_BUTTONS 		8
 
 /* Actions to keyboard key mappings */
-#define NOTHING					"\0"
+#define NOTHING					""
 #define FORWARD					"w"
 #define BACKWARD				"s"
 #define STRIFE_LEFT				"a"
@@ -77,9 +77,9 @@ void map_buttons_to_actions(){
 	actions[MOD_START][DP_LEFT] = NOTHING;
 	actions[MOD_START][DP_RIGHT] = SHOOT_PRIMARY;
 	actions[MOD_START][DP_CIRCLE] = NOTHING;
-	actions[MOD_START][DP_SQUARE] = FAST_LOAD;
+	actions[MOD_START][DP_SQUARE] = /*FAST_LOAD*/ NOTHING;
 	actions[MOD_START][DP_X] = WEAPON_PREVIOUS;
-	actions[MOD_START][DP_TRIANGLE] = FAST_SAVE;
+	actions[MOD_START][DP_TRIANGLE] = /*FAST_SAVE*/ NOTHING;
 }
 
 
