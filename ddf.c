@@ -33,7 +33,7 @@ static void free_global_systems(){
 
 static int loop(){
 	DDF_ERROR err;
-	struct PadState state;
+	struct PadState state = make_empty_pad_state();
 
 	while(!kill_signal_received){
 		// Read input

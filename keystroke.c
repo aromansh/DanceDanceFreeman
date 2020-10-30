@@ -44,7 +44,7 @@
 #define FAST_LOAD				"F7"
 #define PREVIOUS_WEAPON			"q"
 #define SHOOT_PRIMARY			"Return"
-#define SHOOT_SECONDARY			"Backspace" /* Requires modifying default mapping */
+#define SHOOT_SECONDARY			"BackSpace" /* Requires modifying default mapping */
 
 /* Dance pad buttons to actions mappings */
 char* actions[NUM_MODIFIERS][NUM_DP_BUTTONS];

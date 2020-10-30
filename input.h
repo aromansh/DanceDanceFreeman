@@ -19,6 +19,9 @@ struct PadState {
 };
 
 DDF_ERROR input_global_init();
+
+struct PadState make_empty_pad_state();
+
 void input_global_free();
 
 void input_read(struct PadState* const state, DDF_ERROR* const err);

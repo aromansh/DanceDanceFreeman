@@ -45,7 +45,7 @@ static struct make_empty_pad_state(){
 }
 */
 
-struct PadState make_empty_state(){
+struct PadState make_empty_pad_state(){
 	struct PadState state;
 	state.up = Up;
 	state.down = Up;
@@ -65,6 +65,7 @@ static enum KeyState parse_evdev_value(int value){
 	enum KeyState state;
 	switch(value){
 		case 0:
+		default:
 			state = Up;
 			break;
 		case 1:
@@ -79,50 +80,47 @@ static enum KeyState parse_evdev_value(int value){
 }
 
 
-static struct PadState parse_evdev_event(struct input_event* ev){
-	struct PadState state = make_empty_state();
+void update_state_from_evdev_event(struct PadState* state, struct input_event* ev){
 	enum KeyState* key = NULL;
 	switch(ev->code){
 		case BTN_THUMB:
-			key = &state.right;
+			key = &state->right;
 			break;
 		case BTN_TOP2:
-			key = &state.up;
+			key = &state->up;
 			break;
 		case BTN_TRIGGER:
-			key = &state.down;
+			key = &state->down;
 			break;
 		case BTN_TOP:
-			key = &state.left;
+			key = &state->left;
 			break;
 		case BTN_PINKIE:
-			key = &state.circle;
+			key = &state->circle;
 			break;
 		case BTN_BASE2:
-			key = &state.square;
+			key = &state->square;
 			break;
 		case BTN_THUMB2:
-			key = &state.triangle;
+			key = &state->triangle;
 			break;
 		case ABS_Y:
-			key = &state.x;
+			key = &state->x;
 			break;
 		case BTN_BASE4:
-			key = &state.select;
+			key = &state->select;
 			break;
 		case BTN_BASE3:
-			key = &state.start;
+			key = &state->start;
 			break;
 	}
 	if(key != NULL){
 		*key = parse_evdev_value(ev->value);
 	}
-	
-	return state;
 }
 
 
-static struct PadState retrieve_event(){
+static void update_state(struct PadState* state){
 
 	struct input_event ev;
 	do {
@@ -144,27 +142,28 @@ static struct PadState retrieve_event(){
 		}*/
 	} while(rc != LIBEVDEV_READ_STATUS_SUCCESS || (ev.type != EV_KEY && ev.type != EV_ABS));
 
-	return parse_evdev_event(&ev);
+	update_state_from_evdev_event(state, &ev);
 }
 
 
-void print_state(struct PadState state){
+void print_state(struct PadState* state){
 	printf("Up %d, Down %d, Left %d, Right %d, X %d, Circle %d, Square %d, Triangle %d, Select %d, Start %d\n",
-		(int)state.up,
-		(int)state.down,
-		(int)state.left,
-		(int)state.right,
-		(int)state.x,
-		(int)state.circle,
-		(int)state.square,
-		(int)state.triangle,
-		(int)state.select,
-		(int)state.start
+		(int)state->up,
+		(int)state->down,
+		(int)state->left,
+		(int)state->right,
+		(int)state->x,
+		(int)state->circle,
+		(int)state->square,
+		(int)state->triangle,
+		(int)state->select,
+		(int)state->start
 	);
 }
 
 void input_read(struct PadState* const state, DDF_ERROR* const err){
-	*state = retrieve_event();
+	update_state(state);
+	print_state(state);
 	*err = DDF_OK;
 }
 
