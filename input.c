@@ -165,7 +165,6 @@ void print_state(struct PadState state){
 
 void input_read(struct PadState* const state, DDF_ERROR* const err){
 	*state = retrieve_event();
-	print_state(*state);
 	*err = DDF_OK;
 }
 
