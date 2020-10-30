@@ -7,7 +7,7 @@
 #include <fcntl.h>
 
 struct libevdev* dev = NULL;
-const char file[] = "/dev/input/event12";
+const char file[] = "/dev/input/event11";
 int rc=1;
 
 DDF_ERROR input_global_init(){
